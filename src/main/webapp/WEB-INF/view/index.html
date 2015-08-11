@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>通道工具</title>
+
+<link href="${basePath}/css/museui/reset.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/icons.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/stylesheet.css" rel="stylesheet" type="text/css" />
+<#include "/common/bootstrap.html">
+<script type='text/javascript' src='${basePath}/js/museui/actions.js'></script>
+<!--[if lte IE 6]>
+<script src="${basePath}/js/museui/ie6png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('img, .icon,.isw-archive,.isw-chat,.isw-graph,.isw-grid,.isw-list,.isw-text_document,.isw-zoom,.text');
+    </script>
+<![endif]--> 
+
+</head>
+<body style="height: 100%;">
+<!----------头部--------------->
+<div class="header"> <a class="logo" href="index.html">宜信</div>
+<!----------左侧菜单--------------->
+<div class="middle" style="height: 90%;">
+	<div class="menu">
+	  <div class="breadLine"> </div>
+	  <ul class="navigation">
+	    <li class="active"> <a href="index.html"> <span class="isw isw-grid"></span><span class="text">面板</span> </a> </li>
+	    <li class="openable"> <a href="#"> <span class="isw isw-list"></span><span class="text">日志分析</span> </a>
+	      <ul>
+	        <li> <a href="${basePath}/logAnalyze/sql/logFileList" target="mainFrame"> <span class="icon icon-th"></span><span class="text">异常统计</span> </a> </li>
+	        <li> <a href="${basePath}/logAnalyze/sql/logFileList" target="mainFrame"> <span class="icon icon-th"></span><span class="text">SQL语句耗时统计</span> </a> </li>
+	      	<li> <a href="${basePath}/logAnalyze/clean/queryCleanLog" target="mainFrame"> <span class="icon icon-th"></span><span class="text">简要日志查询</span> </a> </li>
+	      </ul>
+	    </li>
+	    <li class="openable"> <a href="#"> <span class="isw isw-list"></span><span class="text">查询报文</span> </a>
+	      <ul>
+	        <li> <a href="${basePath}/datagram/datagramList" target="mainFrame"> <span class="icon icon-th"></span><span class="text">查询报文</span> </a> </li>
+	      </ul>
+	    </li>
+	    <li class="openable"> <a href="#"> <span class="isw isw-list"></span><span class="text">角色管理</span> </a>
+	      <ul>
+	        <li> <a href="${basePath}/roleManage/toIndexView" target="mainFrame"> <span class="icon icon-th"></span><span class="text">角色管理</span> </a> </li>
+	      </ul>
+	    </li>
+	  </ul>
+	  <div class="dr"><span></span></div>
+	</div>
+	<!----------右侧内容区域--------------->
+	<div class="content" style="height: 100%;">
+	  <div class="breadLine"></div>
+	  <div class="col-md-12" style="height: 100%;padding: 0px;" >
+		 	<iframe src="" name="mainFrame" width="100%" style="border:0px;height: 100%;"></iframe>
+	  </div>
+	</div>
+</div>
+</body>
+</html>

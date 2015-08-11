@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>社交系统</title>
+
+<link href="${basePath}/css/museui/reset.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/icons.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/stylesheet.css" rel="stylesheet" type="text/css" />
+<#include "/common/bootstrap.html">
+<script type='text/javascript' src='${basePath}/js/museui/actions.js'></script>
+<!--[if lte IE 6]>
+<script src="${basePath}/js/museui/ie6png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('img, .icon,.isw-archive,.isw-chat,.isw-graph,.isw-grid,.isw-list,.isw-text_document,.isw-zoom,.text');
+    </script>
+<![endif]--> 
+
+</head>
+<body style="height: 100%;">
+	<#include "/common/main_header.html">
+	<div class="row">
+		<div class="col-md-11 ">
+			<table class="table table-bordered">
+				<tr>
+					<td>${datagramDetail}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CLEANLOGMAPPER">
+	<resultMap type="com.xmengy.life.xmytwis.entity.CleanLog" id="BaseResultMap">
+	    <result column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="VERSION" jdbcType="DECIMAL" property="version" />
+	    <result column="TXN_ID" jdbcType="VARCHAR" property="txnId" />
+	    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+	    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+	    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	    <result column="OPER_ID" jdbcType="VARCHAR" property="operId" />
+	     <result column="TUNNEL_ID" jdbcType="VARCHAR" property="tunnelId" />
+	    <result column="BATCH_ID_OUT" jdbcType="VARCHAR" property="batchIdOut" />
+	    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+	    <result column="TXN_TYPE" jdbcType="VARCHAR" property="txnType" />
+	    <result column="PMT_TP" jdbcType="VARCHAR" property="pmtTp" />
+	    <result column="MERCH_ID" jdbcType="VARCHAR" property="merchId" />
+	    <result column="RESP_CODE" jdbcType="VARCHAR" property="respCode" />
+	    <result column="RES_MSG" jdbcType="VARCHAR" property="resMsg" />
+	    <result column="ERROR_DESP" jdbcType="VARCHAR" property="errorDesp" />
+	    <result column="CHK_STS" jdbcType="VARCHAR" property="chkSts" />
+	</resultMap>
+	
+	<select id="selectCleanLogByTxnId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select id, version, txn_id, status, update_time, remark, oper_id, tunnel_id, batch_id_out, order_id, 
+	    		txn_type, pmt_tp, merch_id, resp_code, res_msg, error_desp, chk_sts
+	    from t_cleanlog
+	    where txn_id = #{txnId:VARCHAR} order by update_time desc
+	</select>
+	
+	<insert id="insertCleanLog" parameterType="com.xmengy.life.xmytwis.entity.CleanLog">
+	    <selectKey keyProperty="id" resultType="java.lang.String">
+	      select sys_guid() from dual
+	    </selectKey>
+	    insert into t_cleanlog
+	    	(id, version, txn_id, status, update_time, remark, oper_id, tunnel_id, batch_id_out, order_id, txn_type, pmt_tp, merch_id, resp_code, res_msg, error_desp, chk_sts)
+	    values
+		  	(sys_guid(),#{version:VARCHAR},#{txnId:VARCHAR},#{status:VARCHAR},#{updateTime:VARCHAR},
+		  	#{remark:VARCHAR},#{operId:VARCHAR},#{tunnelId:VARCHAR},
+		  	#{batchIdOut:VARCHAR},#{orderId:VARCHAR},#{txnType:VARCHAR},
+		  	#{pmtTp:VARCHAR},#{merchId:VARCHAR},#{respCode:VARCHAR},
+		  	#{resMsg:VARCHAR},#{errorDesp:VARCHAR},#{chkSts:VARCHAR})
+  </insert>
+</mapper>

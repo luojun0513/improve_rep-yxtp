@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html  style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>社交系统</title>
+
+<link href="${basePath}/css/museui/reset.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/icons.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/stylesheet.css" rel="stylesheet" type="text/css" />
+<#include "/common/bootstrap.html">
+<script type='text/javascript' src='${basePath}/js/museui/actions.js'></script>
+<!--[if lte IE 6]>
+<script src="${basePath}/js/museui/ie6png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('img, .icon,.isw-archive,.isw-chat,.isw-graph,.isw-grid,.isw-list,.isw-text_document,.isw-zoom,.text');
+    </script>
+<![endif]--> 
+
+<script type="text/javascript">  
+    function showExceptionDetail(exceptionName){
+    	$("#exceptionName").val(exceptionName);
+    	$("#formEx").submit();
+    }
+</script>
+
+</head>
+<body style="height: 100%;">
+	<#include "/common/main_header.html">
+	<div align="center">
+		<div>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>异常名称</th>
+					<th>描述</th>
+					<th>次数</th>
+					<th>操作</th>
+				</tr>
+				<#list exceptionDetails?if_exists as exceptionDetail>
+					<tr>
+						<td>
+							${exceptionDetail.name}
+						</td>
+						<td>
+							${exceptionDetail.desc}
+						</td>
+						<td>
+							${exceptionDetail.count?if_exists}
+						</td>
+						<td>
+							<a href="javaScript:void(0);" onclick='showExceptionDetail("${exceptionDetail.name}")'>查看源文件</a>
+						</td>
+					</tr>
+				</#list>
+			</table>
+		</div>
+		<div>
+			<form id="formEx" action="${basePath}/logAnalyze/exception/exceptionViewDetail" method="post" style="display: none;">
+				<input id="currPath" name="currPath" value="${currPath}">
+				<input id="exceptionName" name="exceptionName">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

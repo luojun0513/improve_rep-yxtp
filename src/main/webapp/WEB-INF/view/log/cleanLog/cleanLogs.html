@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html  style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>社交系统</title>
+
+<link href="${basePath}/css/museui/reset.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/icons.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/stylesheet.css" rel="stylesheet" type="text/css" />
+<#include "/common/bootstrap.html">
+<script type='text/javascript' src='${basePath}/js/museui/actions.js'></script>
+<!--[if lte IE 6]>
+<script src="${basePath}/js/museui/ie6png.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('img, .icon,.isw-archive,.isw-chat,.isw-graph,.isw-grid,.isw-list,.isw-text_document,.isw-zoom,.text');
+    </script>
+<![endif]--> 
+<script type="text/javascript">
+	function cleanLogIntoDB(){
+		$.ajax({
+			   type: "POST",
+			   url: "${basePath}/logAnalyze/clean/cleanLogIntoDB",
+			   data: {},
+			   success: function(msg){
+				   $("#logDiv").empty();
+			       $("#logDiv").append(msg);
+			   }
+		});
+	}
+</script>
+</head>
+<body style="height: 100%;">
+	<#include "/common/main_header.html">
+	<div align="center">
+		<div class="row" style="margin-bottom: 5px;">
+			<div class="col-md-8">
+				<form class="form-inline" action="${basePath}/logAnalyze/clean/queryCleanLog" method="post">
+					<input type="text" class="form-control" name="txnId" value="${txnId?if_exists}" style="width: 50%;">
+					<input type="submit" value="查&nbsp;&nbsp;&nbsp;&nbsp;询" class="btn btn-default">
+				</form>
+			</div>
+			<div class="col-md-4">
+				<button onclick="cleanLogIntoDB();" class="btn btn-primary">简要日志入库</button>
+			</div>
+		</div>
+		<div>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>订单号</th>
+					<th>交易号</th>
+					<th>批次号</th>
+					<th>支付类型</th>
+					<th>交易类型</th>
+					<th>通道</th>
+					<th>状态</th>
+					<th>响应码</th>
+					<th>响应信息</th>
+					<th>校验状态</th>
+					<th>异常描述</th>
+					<th>操作人</th>
+					<th>更新时间</th>
+					<th>外部商户编号</th>
+					<th>商户号</th>
+					<th>备注</th>
+				</tr>
+				<#list cleanLogs?if_exists as logFile>
+					<tr>
+						<td>${logFile.orderId?if_exists}</td>
+						<td>${logFile.txnId?if_exists}</td>
+						<td>${logFile.batchIdOut?if_exists}</td>
+						<td>${logFile.pmtTp?if_exists}</td>
+						<td>${logFile.txnType?if_exists}</td>
+						<td>${logFile.tunnelId?if_exists}</td>
+						<td>${logFile.status?if_exists}</td>
+						<td>${logFile.respCode?if_exists}</td>
+						<td>${logFile.resMsg?if_exists}</td>
+						<td>${logFile.chkSts?if_exists}</td>
+						<td>${logFile.errorDesp?if_exists}</td>
+						<td>${logFile.operId?if_exists}</td>
+						<td>${logFile.updateTime?if_exists}</td>
+						<td>${logFile.exMerchId?if_exists}</td>
+						<td>${logFile.merchId?if_exists}</td>
+						<td>${logFile.remark?if_exists}</td>
+					</tr>
+				</#list>
+			</table>
+		</div>
+	</div>
+	<div id="logDiv">
+	</div>
+</body>
+</html>

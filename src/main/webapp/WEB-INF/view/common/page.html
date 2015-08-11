@@ -1,0 +1,32 @@
+
+<script language="javascript" type="text/javascript" src="${basePath}/js/page.js"></script>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+<tr>
+	
+	<#if pages?exists>
+		<td align="left">
+		&nbsp;&nbsp;&nbsp;共<strong>${count!}</strong>条记录&nbsp;&nbsp;
+		共<strong>${pages!}</strong>页&nbsp;&nbsp;
+		第<strong>${page!}</strong>页&nbsp;&nbsp;
+		</td>
+		
+		<td align="right">
+		<#if page?exists && page == 1 >
+			‹‹ 首页&nbsp;&nbsp;‹ 上一页&nbsp;&nbsp;
+		<#else>
+			<a href="javascript:pageJS(1);">‹‹首　页</a>&nbsp;&nbsp;<a href="javascript:pageJS('${page -1}');">‹上一页</a>
+		</#if>
+		
+		<#if page?exists && pages?exists && page == pages>
+			下一页›&nbsp;&nbsp;末　页››
+		<#else>
+			<a href="javascript:pageJS('${page + 1}');">下一页›</a>&nbsp;&nbsp;<a href="javascript:pageJS('${pages}');">末　页››</a>
+		</#if>
+			<input id="page" name="pageNum" type="text" style="height:16px;line-height:16px;border: 1px solid #e0e0e0;width:30px;" value="${page!}"/>
+		</td>
+		<td width="50" align="left">
+    		<input id="pageButton" name="pageButton" type="button" onclick="pagePlusJS('${pages}');" value="go" style="width: 30px;margin-left: 5px"/>
+		</td>
+	</#if> 
+</tr>
+</table>
